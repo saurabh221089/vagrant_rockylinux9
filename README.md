@@ -2,7 +2,9 @@
 This repo is for creating a Vagrant box for RockyLinux9 in VirtualBox using Vagrant tool
 
 ```
-$ vagrant init rockylinux/9
+$ vagrant init rockylinux/9  (It will create a Vagrantfile for rockylinux/9 vagrant box)
+
+$ vagrant init   (It will consume the Vagrantfile and initiate the .vagrant directory structure)
 
 $ vagrant validate
 Vagrantfile validated successfully.
