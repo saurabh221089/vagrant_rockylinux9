@@ -6,16 +6,17 @@ Vagrant.configure("2") do |config|
     vb.memory = "2048"
     vb.cpus = "2"
 	end
+	config.vm.boot_timeout=600
 	config.vm.provision "shell", inline: <<-SHELL
-    sudo dnf -y upgrade
-	echo "##### Creating saurabh user #####"
-	sudo useradd saurabh
-	sudo mkdir -p /home/saurabh/.ssh
-	sudo touch /home/saurabh/.ssh/authorized_keys
-	sudo chown saurabh:saurabh /home/saurabh/.ssh/authorized_keys
-	sudo chmod 600 /home/saurabh/.ssh/authorized_keys
-	echo "<PASTE your PUBLIC KEY>" | sudo tee -a /home/saurabh/.ssh/authorized_keys
-	sudo echo "saurabh ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/saurabh
-	sudo chmod 440 /etc/sudoers.d/saurabh
+		sudo dnf -y upgrade
+		echo "##### Creating saurabh user #####"
+		sudo useradd saurabh
+		sudo mkdir -p /home/saurabh/.ssh
+		sudo touch /home/saurabh/.ssh/authorized_keys
+		sudo chown saurabh:saurabh /home/saurabh/.ssh/authorized_keys
+		sudo chmod 600 /home/saurabh/.ssh/authorized_keys
+		echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBzEkJqpOH+212m1p6JKXl8Qz6LG/SsrNM25N22CemzW saura@DESKTOP-EJD8A2T" | sudo tee -a /home/saurabh/.ssh/authorized_keys
+		sudo echo "saurabh ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/saurabh
+		sudo chmod 440 /etc/sudoers.d/saurabh
 	 SHELL
 end
